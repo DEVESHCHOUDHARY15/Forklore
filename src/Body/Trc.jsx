@@ -10,17 +10,11 @@ import Card from "../Card/Card";
 
 const Trc = () => {
   const apidata = useMainAPi();
-
-  console.log(
-    "TRc DATa>>>>",
-    apidata?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-      ?.restaurants
-  );
-
   const FilteredData =
     apidata?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
       ?.restaurants;
-  // console.log("this is Filtered Data>>>>", FilteredData);
+
+  console.log("filtered data>>>>", FilteredData);
 
   return apidata == "" ? (
     <h1>Wait...</h1>
@@ -34,7 +28,7 @@ const Trc = () => {
       <h1 className="font-bold text-2xl p-2">Top restaurant chains in Delhi</h1>
       <CarouselContent>
         {FilteredData.map((d) => (
-          <CarouselItem key={d?.id} className="md:basis-1/2 lg:basis-1/4">
+          <CarouselItem key={d?.info?.id} className="md:basis-1/2 lg:basis-1/4">
             <Card d={d} />
           </CarouselItem>
         ))}
