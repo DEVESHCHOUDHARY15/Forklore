@@ -14,8 +14,6 @@ const Trc = () => {
     apidata?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
       ?.restaurants;
 
-  console.log("filtered data>>>>", FilteredData);
-
   return apidata == "" ? (
     <h1>Wait...</h1>
   ) : (

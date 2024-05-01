@@ -1,18 +1,32 @@
-import useMainAPi from "@/CustomHooks/useMainAPi.jsx";
 import Trc from "./Trc.jsx";
 import Woym from "./Woym";
 import Card from "@/Card/Card.jsx";
 import FilterPop from "../Popup/FilterPop.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MAIN_API } from "../../Utils/Api.jsx";
 
 const Body = () => {
   const [showPop, setShowPop] = useState(false);
-  const apidata = useMainAPi();
-  const FilteredData =
-    apidata?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-      ?.restaurants;
-  return apidata == "" ? (
+  const [apiData, setApiData] = useState([]);
+
+  const HandleApi = async () => {
+    const URL = await fetch(MAIN_API);
+    const Data = await URL.json();
+    setApiData(
+      Data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+  };
+
+  useEffect(() => {
+    HandleApi();
+  }, []);
+
+  const handleFilterData = (data) => {
+    setApiData(data);
+  };
+
+  return apiData == "" ? (
     <h1>wait....</h1>
   ) : (
     <div>
@@ -34,9 +48,15 @@ const Body = () => {
         <button className="shadow-lg border rounded-2xl py-1 px-3 ml-2 my-3 font-semibold">
           Coupon
         </button>
-        {showPop && <FilterPop onClose={() => setShowPop(false)} />}
-        <div className="flex flex-wrap w-4/5 mx-auto justify-between">
-          {FilteredData.map((d) => (
+        {showPop && (
+          <FilterPop
+            onClose={() => setShowPop(false)}
+            FilteredData={apiData}
+            onFilteredData={handleFilterData}
+          />
+        )}
+        <div className="flex flex-wrap w-4/5 mx-auto gap-5">
+          {apiData.map((d) => (
             <Link key={d?.info?.id} to={`/restaurants/${d?.info?.id}`}>
               <Card d={d} />
             </Link>

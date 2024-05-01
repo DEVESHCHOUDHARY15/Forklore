@@ -4,7 +4,7 @@ import { IMAGE_URL } from "../../Utils/Api";
 const Card = ({ d }) => {
   return (
     <div>
-      <div className="w-64 py-2 cursor-pointer hover:scale-105 ease-in-out duration-300">
+      <div className="w-64 py-2 cursor-pointer hover:scale-105 ease-in-out duration-300 ">
         <img
           className="w-60 h-40 object-cover rounded-lg bg-gradient-to-t from-black "
           src={IMAGE_URL + d?.info?.cloudinaryImageId}
