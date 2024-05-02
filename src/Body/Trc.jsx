@@ -7,6 +7,7 @@ import {
   CarouselPrevious,
 } from "../components/ui/carousel";
 import Card from "../Card/Card";
+import { Link } from "react-router-dom";
 
 const Trc = () => {
   const apidata = useMainAPi();
@@ -26,9 +27,11 @@ const Trc = () => {
       <h1 className="font-bold text-2xl p-2">Top restaurant chains in Delhi</h1>
       <CarouselContent>
         {FilteredData.map((d) => (
-          <CarouselItem key={d?.info?.id} className="md:basis-1/2 lg:basis-1/4">
-            <Card d={d} />
-          </CarouselItem>
+          <Link key={d?.info?.id} to={`/restaurants/${d?.info?.id}`}>
+            <CarouselItem className="md:basis-1/2 lg:basis-1/4">
+              <Card d={d} />
+            </CarouselItem>
+          </Link>
         ))}
       </CarouselContent>
       <CarouselPrevious />

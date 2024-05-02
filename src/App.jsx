@@ -5,6 +5,8 @@ import appStore from "../Utils/appStore";
 import SignInPage from "./Pages/SignInPage";
 import Body from "./Body/Body";
 import Shop from "./Pages/Shop";
+import Search from "./Pages/Search";
+import Cart from "./Pages/Cart";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,7 +23,11 @@ function App() {
           element: <Body />,
         },
         {
-          path: "/signinn",
+          path: "/search",
+          element: <Search />,
+        },
+        {
+          path: "/signin",
           element: <SignInPage />,
         },
         {
@@ -32,11 +38,11 @@ function App() {
           path: "/restaurants/:resId",
           element: <Shop />,
         },
+        {
+          path: "/cart",
+          element: <Cart />,
+        },
       ],
-    },
-    {
-      path: "/signin",
-      element: <SignInPage />,
     },
   ]);
 

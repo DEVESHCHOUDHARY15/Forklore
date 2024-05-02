@@ -8,7 +8,7 @@ const Slice = createSlice({
 
   reducers: {
     addItem: (state, action) => {
-      state.item = action.payload;
+      state.item.push(action.payload);
     },
     removeItem: (state) => {
       state.item.pop();

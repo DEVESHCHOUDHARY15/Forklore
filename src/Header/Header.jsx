@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
-      <div className="flex justify-between px-8  shadow-lg ">
+      <div className="flex justify-between px-8  shadow-lg sticky top-0 bg-white z-30 ">
         <Link to="/">
           <img
             className="w-20 cursor-pointer"
@@ -17,10 +17,12 @@ const Header = () => {
           />
         </Link>
         <ul className="flex space-x-8 cursor-pointer">
-          <li className="flex items-center">
-            <IoSearch />
-            <span className="ml-2">Search</span>
-          </li>
+          <Link to="/search">
+            <li className="flex items-center mt-7">
+              <IoSearch />
+              <span className="ml-2">Search</span>
+            </li>
+          </Link>
           <Link to="/offers">
             <li className="flex items-center mt-7">
               <BiSolidOffer />
@@ -31,16 +33,18 @@ const Header = () => {
             <IoIosHelpBuoy />
             <span className="ml-2">Help</span>
           </li>
-          <Link to="/signinn">
+          <Link to="/signin">
             <li className="flex items-center mt-7">
               <FaUserAstronaut />
               <span className="ml-2">Sign In</span>
             </li>
           </Link>
-          <li className="flex items-center">
-            <FaCartShopping />
-            <span className="ml-2">Cart</span>
-          </li>
+          <Link to="/cart">
+            <li className="flex items-center mt-7">
+              <FaCartShopping />
+              <span className="ml-2">Cart</span>
+            </li>
+          </Link>
         </ul>
       </div>
     </>
